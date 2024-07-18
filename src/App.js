@@ -11,7 +11,7 @@ export default function App() {
      <Weather defaultCity="Limpopo"/>
      <footer>
       This project was coded by Sade Makhubele and is   
-      <a href="" target="_blank" rel="noreferrer"> open-sourced in Github
+      <a href="https://github.com/sademakhubele/app-react-weather.git" target="_blank" rel="noreferrer"> open-sourced in Github
       </a>
      </footer>
      </div>
