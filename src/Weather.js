@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
+import FormattedDate from './FormattedDate';
 import "./Weather.css";
 
 export default function Weather(props) {
@@ -18,6 +19,8 @@ export default function Weather(props) {
           icon: response.data.weather[0].icon,
           city: response.data.name
       });
+
+    }
   
   function handleSubmit(event) {
     event.preventDefault();
@@ -26,7 +29,24 @@ export default function Weather(props) {
     axios.get(apiUrl).then(displayWeather);
   }
 
+  function search(){
+    const apiKey="012db25be4dd3739185b772ee4fc78d3";
+    let apiUrl=`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
+    axios.get(apiUrl).then(handleResponse);
+    
+      }
+    
+      function handleSubmit(event){
+        event.preventDefault();
+        search();
+      
+    }
+    
+      function handleCityChange(event){
+        setCity(event.target.value);
+      }
 
+  if (weatherData.ready){
   return (
     <div className="Weather"> 
     <form onSubmit={handleSubmit}>
@@ -38,7 +58,7 @@ export default function Weather(props) {
         className="form-control" 
         autoFocus="on" 
         onChange={handleCityChange}
-        />
+           />
         </div>
         <div className='col-3'>
         <input type="button" value="searh" className="btn btn-primary w-100" />
@@ -49,10 +69,12 @@ export default function Weather(props) {
    
    </div>
 );
-} else{
-  
+   }else {
+
   Search();
 
   return "Loading.."
 }
-}
+   }
+
+  
